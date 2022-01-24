@@ -1,0 +1,172 @@
+manual 
+yum install man-pages
+man 7 man 
+man passwd 
+man 5 passwd 
+man -a passwd
+文件
+su - root 
+ls /root   /
+ls / .  根目录  和当前目录
+ls -r 默认文件名逆向显示
+ls -a 
+ls -R 递归
+ ls -lart -R  长格式 全部 逆序 时间 递归
+ 
+/etc/sysconfig/network-scripts
+cd - 来回切换
+./ 当前路径 省略./
+../   省却/
+mkdir /a/b
+mkdir /a/b/c
+mkdir -p /a/b/c/d/e/f/g mkdir -p ：递归创建目录，即使上级目录不存在，会按目录层级自动创建目录
+ yum -y install bzip2
+
+
+rmdir 删除目录 rmdir /a
+rm -r  /a  需要逐级进入确认
+rm -rf  / a   /和a直接加空格  
+cp -p 保留原有时间
+cp -a 保留所有
+mv 重命名、移动
+通配符 *所有 ？一个
+touch a b c -p 忽略已存在
+cat/head/tail /tmp/demo
+tail -3 /tmp/demo
+tail -f /tmp/demo 跟踪
+wc -l /tmp/demo
+打包
+tar cf /tmp/xxxx.tar /etc 
+ls -lh /tmp/xxx.tar 
+压缩
+gzip bzip2 命令
+ .gz  .bzip2/bz2
+tar czf          tar -cjf 
+tar zcf          tar -jcf 
+解包
+tar xf 
+解压缩
+tar xzf            tar xjf
+tar zxf            tar jxf
+写法： .tar.bz2  = .tbz2   .tgz
+
+文本编辑器  vi
+四种模式
+向上兼容（Upward Compatible）又称向前兼容，在某一平台的较低版本环境中编写的程序可以在较高版本的环境中运行。
+normal-mode
+insert-mode
+command mode
+visual mode
+小写i 光标位置进入insert 大写i 进入行开头
+小写a 光标位置下一位进入insert 大写a 进入行结尾
+大写O上面空行 小写o下面空行
+hjkl
+yy
+ y$ 中间到最后  
+  3yy   p粘贴
+  dd
+   d$ 
+   u撤销   重做ctrl+r
+   x删除单个字符
+   r  输入新的
+   ：set nu
+   输入 11 shift+G   g第一行  G最后一行
+   shift 6 =^ 开头  4结尾  拖字符
+   
+   ：w /root/a.txt
+   :!ifconfig 临时查看IP地址
+   /查找命令  n查看另一个字符
+   ：s/3  当前光标替换
+   :%s/3 全局替换
+   :%s/KK/SS/g 全局替换全部
+   ：set:nonu 
+   修改vim配置文件 vim /etc/vimrc
+   可是模式 v shift v  ctrl v 块
+   shift i 修改完 两次esc
+    直接安d
+
+用户与权限
+useradd
+userdel
+passwd
+usermod
+chage
+id root 有哪些已经存在的用户
+
+tail -10 /etc/passwd
+tail -10 /etc/shadow
+passwd  wilson 
+userdel -r 不保留home目录
+usermod -d  /home/w1 w 改家
+
+groupad
+groupdel
+useradd user1
+usermod -g gruop1 user1
+
+su - user1
+su - root 
+visudo添加 localhost可以 shutdown -c 
+user3执行命令 输入user3密码  sudo /sbin/shutdown -c
+ 
+用户和用户组的配置文件
+vim /etc/group
+
+-普通文件
+d 目录文件
+x进入目录  rx显示目录内的文件名  wx修改目录内的文件名  1   3  5
+b块特殊文件
+c字符特殊文件
+l符号链接
+f命名管道
+s套接字文件
+4 2 1 r w x 
+chmod 修改文件 目录权限
+chmod u+x /tmp/testfile
+chomd 755 /tmp/testfile  
+chown
+chgrp
+
+chown 更改属主   chown user1 /test
+                          chown :group1 /test   
+				chown user1:group1 /test
+		chgrp user3 /test
+默认文件644
+umask022
+666-022=644
+chmod 644 bfile
+chmod u+x
+chmod g-r
+chmod o-r
+
+SUID s 不管是谁都以属主来决定 4755
+SGID 共享文件以组
+SBIT /Tmp   自己 和root    t    1777
+
+=
+ifconfig etho 10.211.55.4
+ifconfig ehto  netmask 255.255.255.0
+ifconfig etho up = ifup eth0
+
+route del default gw 10.211.55.1
+route add default gw 10.211.55.2
+route -n
+route add - host 10.0.0.1 gw  10.211.55.1
+
+ip addr ls
+	ifconfig
+ip lik set dev eth0 up
+	ifup etho
+ip addr add 10.0.0/24 dev eth1
+	ifconfig eth1 10.0.0.1 netmask 255.255.255.0
+ip route add 10..0/24  via 192.168.0.1
+	route add -net 10.0.0.0 netmask 255.255.255.0 gw 192.168.0.1
+
+
+ping
+traceroute -w 1 www.baidu.com
+mtr
+nslookup www.baidu.com
+telent www,baidu,.com
+tcpdump -i any -n port 80
+
