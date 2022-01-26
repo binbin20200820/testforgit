@@ -301,4 +301,96 @@ vim /etc/selinux/config
 disabled
 exit
 
+ps查看进程
+tty0
+ps -e | more 管道符  
+init
+ps -ef | more  ps -ef | grep tail
+ID          PID    PPID  C STIME TTY          TIME CMD
+
+ps-elf 
+F S UID          PID    PPID  C PRI  NI ADDR SZ WCHAN  STIME TTY          TIME CMD
+top s 3
+
+调整 优先级
+作业控制
+#!/bin/bash
+
+echo $$ 当前进程的pid
+while : 
+do
+    :
+done
+
+top -p 22577
+nice -n 10 ./a.sh
+renice -n 15 12345
+优先级提高 PR值也会变
+进程的前后台切换 是作业控制
+少打开终端
+后台运行./a.sh  &
+调回前台 
+jobs 
+fg 1
+后台  ctrl z 临时停止
+bg 1 fg 1
+
+kill -l 
+ctrl + c   2号信号
+kill -9  23011 无条件结束
+守护进程
+随开机直接启动
+daemon 
+
+nohup 忽略挂起信号
+
+tail -f /var/log/messages
+
+nohup  tail -f  /var/log/messages    $    会占用当前的目录
+孤儿进程 被1号进程收留了
+
+cd/proc/27451
+ls
+ls -l cwd
+ls -l fd
+0 标准输入
+1 标准输出
+2 标准输出
+
+ctrl+a d detached退出
+screen -ls 
+screen -r 22222
+exit
+
+tail -f dmesg
+tail -f messages
+tail -f secure 
+tail -f cron 
+vim /etc/locale.conf
+source /etc/locale.conf
+
+cd /etc/init.d/
+ vim network
+
+cd /usr/lib/systemd/system
+0关机 init 0
+init 6 重启
+init 1 单用户 重置密码
+init 2 不带网络多用户
+init 3 字符模式
+init 4 不适用
+init 5  图形界面
+systemctl start stop restrat  reload enable disable 服务名称
+
+
+cd /lib/systemd/system
+ls *.target
+ls -l runlevel*.target
+systemctl get-default 
+vim sshd.service
+a.service
+requires=a.service
+
+vim /etc/selinux/config 
+ps ls id -Z
 
